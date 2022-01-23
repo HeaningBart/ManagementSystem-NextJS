@@ -1,7 +1,7 @@
 import axios from 'axios';
-const { API_URL } = process.env;
+const url = 'https://young-waters-77433.herokuapp.com/'
 const Api = axios.create({
-    baseURL: API_URL
+    baseURL: url
 })
 
 
