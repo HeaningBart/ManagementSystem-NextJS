@@ -1,0 +1,13 @@
+  {
+       "name": "Example",
+       "description": "This app does one little thing",
+       "success_url": "/",
+       "scripts": {
+          "postdeploy": "database create && database update"
+         },
+      "env": {
+        "production": "true",
+        "verboseApiCalls": "false",
+        "API_URL": "https://young-waters-77433.herokuapp.com/"
+      }
+  }
