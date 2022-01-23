@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import ExpenseService from '../services/ExpenseService';
 import SeriesService from '../services/SeriesService';
 import UserService from '../services/UserService';
+const { API_URL } = process.env;
 
 const Main = ({ email }) => {
     let router = useRouter();
@@ -88,6 +89,7 @@ const Main = ({ email }) => {
     return (
         <>
             <div className="container mx-auto">
+                <h1>{API_URL}</h1>
                 <div className="grid grid-cols-12">
                     <div className="col-span-12">
                         <div className="expense-form gap-x-2">
