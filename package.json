@@ -4,7 +4,6 @@
   "engines": {
     "node": "16.13.1" 
   },
-  "homepage": "https://managament.reaperscans.com.br",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
