@@ -1,11 +1,16 @@
 {
   "name": "management-system",
   "private": true,
+  "engines": {
+    "node": "16.13.1" 
+  },
+  "homepage": "https://managament.reaperscans.com.br",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "axios": "^0.25.0",

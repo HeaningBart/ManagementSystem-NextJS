@@ -15,7 +15,6 @@ const Home = ({ name }) => {
         <div className="container mx-auto">
           <div className={`${styles.mainContent} text-center p-5 rounded`}>
             <h1>Management System - Reaper Scans BR</h1>
-            <p>That's a full JS web-app built for making the lives of managers of big groups easier.</p>
             <Link href="/login" className="login-link">Go to Login.</Link>
           </div>
         </div>
