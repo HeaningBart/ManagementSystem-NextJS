@@ -41,3 +41,26 @@ a {
   padding-left: 50px;
   padding-right: 50px;
 }
+
+.expense-form {
+  padding: 20px;
+  box-shadow: 0 0 20px #00000065;
+  border-radius: 20px;
+  margin-top: 30px;
+  select {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #a5a5a5;
+    padding: 5px;
+  }
+  input {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #a5a5a5;
+  }
+}
+
+.tftable {
+  width: 100%;
+  text-align: center;
+}

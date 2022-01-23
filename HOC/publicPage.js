@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const withAuth = (WrappedComponent) => {
+const publicPage = (WrappedComponent) => {
     return (props) => {
         const [verified, setVerified] = useState(false);
         let router = useRouter();
@@ -11,19 +11,18 @@ const withAuth = (WrappedComponent) => {
             let token = localStorage.getItem('token');
             if (token) {
                 setVerified(true);
+                router.push('/')
             } else {
                 setVerified(false);
-                router.push('/login')
             }
         })
 
-
-        if (verified) {
-            return <WrappedComponent name={name} {...props} />
+        if (!verified) {
+            return <WrappedComponent {...props} />
         } else {
             return null;
         }
     }
 }
 
-export default withAuth;
+export default publicPage;
