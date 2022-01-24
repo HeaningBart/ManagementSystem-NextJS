@@ -193,14 +193,14 @@ const Main = ({ email }) => {
                                             })}
                                         </select>
                                     }
-                                    <form onSubmit={handleSubmit((data) => CreateSeries(data))}>
+                                    <form onSubmit={handleSubmit(({ Name, Slug, Tl_value, Pr_value, Clrd_value, Ts_value }) => console.log(Name, Slug, Tl_value, Pr_value, Clrd_value, Ts_value))}>
                                         <input {...register('Name')} type="text" className="series-slug block w-full mb-5" placeholder="Insert here the series name..." />
                                         <input {...register('Slug')} type="text" className="series-slug block w-full mb-5" placeholder="Insert here the series slug..." />
                                         <input {...register('Tl_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Translation Value..." />
                                         <input {...register('Pr_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Proofreading Value..." />
                                         <input {...register('Clrd_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Cl/Rd Value..." />
                                         <input {...register('Ts_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Typesetting Value..." />
-                                        <button type="submit" className="rounded w-full p-3 bg-stone-800 text-white">Create new series</button>
+                                        <button type="submit" className="rounded w-full p-3 bg-stone-800 text-white">Update selected series</button>
                                     </form>
                                 </div>
                             </div>
