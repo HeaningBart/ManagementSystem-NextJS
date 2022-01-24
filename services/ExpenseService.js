@@ -18,6 +18,19 @@ const ExpenseService = {
             }
         });
         return response.data;
+    },
+
+    deleteExpense: async (id) => {
+        try {
+            const response = await Api.delete('/expenses/delete', id, {
+                headers: {
+                    'x-access-token': localStorage.getItem('token')
+                }
+            });
+            return response.data;
+        } catch (error) {
+            alert(error);
+        }
     }
 }
 

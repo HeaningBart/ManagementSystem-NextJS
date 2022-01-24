@@ -21,7 +21,7 @@ const LoginPage = () => {
         if (response) {
             let token = response.token;
             localStorage.setItem('token', token);
-            router.push('/');
+            router.push('/main');
         } else {
             alert('Something has gone wrong.')
         }

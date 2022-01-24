@@ -15,12 +15,21 @@ const Main = ({ email }) => {
     const [chapter, setChapter] = useState('');
     const [expenses, setExpenses] = useState(null);
     const [admin, setAdmin] = useState(false);
+    const [seriesToUpdate, setUpdate] = useState('');
 
 
     const { register, handleSubmit } = useForm();
     const [result, setResult] = useState("");
 
+    const deleteExpense = async (id) => {
+        try {
+            let response = await ExpenseService.deleteExpense(id);
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
 
+    }
     const fetchExpenses = async () => {
         try {
             let response = await ExpenseService.listExpensesByUser();
@@ -69,6 +78,7 @@ const Main = ({ email }) => {
         fetchSeries();
         fetchExpenses();
     }, [])
+
 
 
     const createExpense = async () => {
@@ -126,6 +136,7 @@ const Main = ({ email }) => {
                                         <th>Function</th>
                                         <th>Value per position</th>
                                         <th>Day</th>
+                                        <th>Delete expense</th>
                                     </tr>
                                 </thead>
                                 {series && expenses &&
@@ -140,6 +151,7 @@ const Main = ({ email }) => {
                                                     <td>{expense.type}</td>
                                                     <td>{expense.value}</td>
                                                     <td>Jan 21, 2022</td>
+                                                    <td><button onClick={() => deleteExpense(expense.id)}>X</button></td>
                                                 </tr>
                                             )
                                         })}
@@ -151,23 +163,56 @@ const Main = ({ email }) => {
                 </div>
             </div>
             {admin &&
-                <div className="container mx-auto">
-                    <div className="grid grid-cols-12">
-                        <div className="col-span-12">
-                            <div className="expense-form gap-x-2">
-                                <form onSubmit={handleSubmit((data) => CreateSeries(data))}>
-                                    <input {...register('name')} type="text" className="series-slug block w-full mb-5" placeholder="Insert here the series name..." />
-                                    <input {...register('slug')} type="text" className="series-slug block w-full mb-5" placeholder="Insert here the series slug..." />
-                                    <input {...register('tl_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Translation Value..." />
-                                    <input {...register('pr_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Proofreading Value..." />
-                                    <input {...register('clrd_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Cl/Rd Value..." />
-                                    <input {...register('ts_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Typesetting Value..." />
-                                    <button type="submit" className="rounded w-full p-3 bg-stone-800 text-white">Create new series</button>
-                                </form>
+                <>
+                    <div className="container mx-auto">
+                        <div className="grid grid-cols-12">
+                            <div className="col-span-12">
+                                <div className="expense-form gap-x-2">
+                                    <form onSubmit={handleSubmit((data) => CreateSeries(data))}>
+                                        <input {...register('name')} type="text" className="series-slug block w-full mb-5" placeholder="Insert here the series name..." />
+                                        <input {...register('slug')} type="text" className="series-slug block w-full mb-5" placeholder="Insert here the series slug..." />
+                                        <input {...register('tl_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Translation Value..." />
+                                        <input {...register('pr_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Proofreading Value..." />
+                                        <input {...register('clrd_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Cl/Rd Value..." />
+                                        <input {...register('ts_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Typesetting Value..." />
+                                        <button type="submit" className="rounded w-full p-3 bg-stone-800 text-white">Create new series</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <div className="container mx-auto">
+                        <div className="grid grid-cols-12">
+                            <div className="col-span-12">
+                                <div className="expense-form gap-x-2">
+                                    {series &&
+                                        <select className="inline-block mb-5" id="series-select" value={seriesToUpdate} onChange={(e) => setUpdate(e.target.value)}>
+                                            {series.map((series) => {
+                                                return <option key={series.slug} value={series.id}>{series.name}</option>
+                                            })}
+                                        </select>
+                                    }
+                                    <form onSubmit={handleSubmit((data) => CreateSeries(data))}>
+                                        <input {...register('Name')} type="text" className="series-slug block w-full mb-5" placeholder="Insert here the series name..." />
+                                        <input {...register('Slug')} type="text" className="series-slug block w-full mb-5" placeholder="Insert here the series slug..." />
+                                        <input {...register('Tl_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Translation Value..." />
+                                        <input {...register('Pr_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Proofreading Value..." />
+                                        <input {...register('Clrd_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Cl/Rd Value..." />
+                                        <input {...register('Ts_value')} type="number" className="tl-value block w-full mb-5" placeholder="Insert here the Typesetting Value..." />
+                                        <button type="submit" className="rounded w-full p-3 bg-stone-800 text-white">Create new series</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </>
+
+
+
             }
         </>
     )
